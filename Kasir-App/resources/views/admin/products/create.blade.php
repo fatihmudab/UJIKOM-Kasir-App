@@ -1,0 +1,38 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>➕ Tambah Produk Baru</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('products.store') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Nama Produk</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Harga</label>
+                            <input type="number" name="price" class="form-control" required min="0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stok</label>
+                            <input type="number" name="stock" class="form-control" required min="0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">URL Gambar (opsional)</label>
+                            <input type="text" name="image" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{{ route('products.index') }}" class="btn btn-secondary">Batal</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
