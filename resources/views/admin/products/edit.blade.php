@@ -27,6 +27,11 @@
                         <div class="mb-3">
                             <label class="form-label">URL Gambar (opsional)</label>
                             <input type="text" name="image" class="form-control" value="{{ $product->image }}">
+                            @if($product->image)
+                                <div class="mt-2">
+                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" style="max-width: 200px; max-height: 200px;" class="img-thumbnail">
+                                </div>
+                            @endif
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a href="{{ route('products.index') }}" class="btn btn-secondary">Batal</a>

@@ -6,9 +6,11 @@ use App\Models\Customer;
 use App\Models\DetailOrder;
 use App\Models\Order;
 use App\Models\Product;
+use App\Exports\OrdersExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -156,34 +158,8 @@ class OrderController extends Controller
 
     public function export(Request $request)
     {
-        $query = Order::with(['customer', 'employee', 'detailOrders.product']);
+        $filename = 'orders_report_' . date('Y-m-d_His') . '.xlsx';
 
-        if (auth()->user()->role === 'employee') {
-            $query->where('employee_id', auth()->id());
-        }
-
-        $orders = $query->orderBy('sale_date', 'desc')->get();
-
-        $filename = 'orders_' . date('Y-m-d_His') . '.csv';
-        $handle = fopen($filename, 'w+');
-        fputcsv($handle, ['Order ID', 'Employee', 'Customer', 'Date', 'Total Price', 'Total Pay', 'Change', 'Points Used', 'Points Earned']);
-
-        foreach ($orders as $order) {
-            fputcsv($handle, [
-                $order->id,
-                $order->employee->name,
-                $order->customer ? $order->customer->name : 'Non-Member',
-                $order->sale_date->format('Y-m-d H:i:s'),
-                $order->total_price,
-                $order->total_pay,
-                $order->total_return,
-                $order->points_used,
-                $order->points_earned,
-            ]);
-        }
-
-        fclose($handle);
-
-        return response()->download($filename)->deleteFileAfterSend(true);
+        return Excel::download(new OrdersExport, $filename);
     }
 }

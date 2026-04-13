@@ -25,8 +25,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Orders - All roles
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
     Route::get('/orders/export', [OrderController::class, 'export'])->name('orders.export');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
     // Employee/Kasir routes
     Route::middleware(['role:employee'])->group(function () {
@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
             return redirect()->route('transaction.create');
         })->name('employee.dashboard');
     });
+
+    // Customer search (accessible by both admin and employee)
+    Route::get('/customers/search/{phone}', [CustomerController::class, 'search'])->name('customers.search');
 
     // Admin routes
     Route::middleware(['role:admin'])->group(function () {
@@ -62,9 +65,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/{product}/update-stock', [ProductController::class, 'updateStock'])->name('update-stock');
             Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
         });
-
-        // Customer search (accessible by both admin and employee)
-        Route::get('/customers/search/{phone}', [CustomerController::class, 'search'])->name('customers.search');
     });
 
     // Debug route - cek semua customer

@@ -17,7 +17,9 @@
                         <p class="text-muted mb-1" style="font-size: 13px;">Total Pengguna</p>
                         <h3 class="mb-0" style="color: #2c3e50;">{{ $stats['total_users'] }}</h3>
                     </div>
-                    <div style="font-size: 40px; opacity: 0.3;">👥</div>
+                    <div style="font-size: 40px; opacity: 0.15;">
+                        <i class="fas fa-users"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,7 +32,9 @@
                         <p class="text-muted mb-1" style="font-size: 13px;">Total Produk</p>
                         <h3 class="mb-0" style="color: #2c3e50;">{{ $stats['total_products'] }}</h3>
                     </div>
-                    <div style="font-size: 40px; opacity: 0.3;">📦</div>
+                    <div style="font-size: 40px; opacity: 0.15;">
+                        <i class="fas fa-box"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +47,9 @@
                         <p class="text-muted mb-1" style="font-size: 13px;">Total Pesanan</p>
                         <h3 class="mb-0" style="color: #2c3e50;">{{ $stats['total_orders'] }}</h3>
                     </div>
-                    <div style="font-size: 40px; opacity: 0.3;">🛒</div>
+                    <div style="font-size: 40px; opacity: 0.15;">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,7 +62,9 @@
                         <p class="text-muted mb-1" style="font-size: 13px;">Total Pelanggan</p>
                         <h3 class="mb-0" style="color: #2c3e50;">{{ $stats['total_customers'] }}</h3>
                     </div>
-                    <div style="font-size: 40px; opacity: 0.3;">👤</div>
+                    <div style="font-size: 40px; opacity: 0.15;">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,7 +100,7 @@
 
 @if($stats['low_stock_products'] > 0)
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>⚠️ Perhatian:</strong> Ada {{ $stats['low_stock_products'] }} produk dengan stok rendah.
+        <strong><i class="fas fa-exclamation-triangle me-2"></i>Perhatian:</strong> Ada {{ $stats['low_stock_products'] }} produk dengan stok rendah.
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 @endif
@@ -102,9 +110,15 @@
         <div class="card">
             <div class="card-header">Aksi Cepat</div>
             <div class="card-body">
-                <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Kelola User</a>
-                <a href="{{ route('products.index') }}" class="btn btn-success">Kelola Produk</a>
-                <a href="{{ route('orders.index') }}" class="btn btn-info">Lihat Pesanan</a>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-primary">
+                    <i class="fas fa-users-cog me-1"></i> Kelola Pengguna
+                </a>
+                <a href="{{ route('products.index') }}" class="btn btn-success">
+                    <i class="fas fa-boxes me-1"></i> Kelola Produk
+                </a>
+                <a href="{{ route('orders.index') }}" class="btn btn-info">
+                    <i class="fas fa-list me-1"></i> Lihat Pesanan
+                </a>
             </div>
         </div>
     </div>
@@ -133,7 +147,9 @@
                         <td>{{ $order->customer ? $order->customer->name : 'Non-Member' }}</td>
                         <td><strong>Rp {{ number_format($order->total_price, 0, ',', '.') }}</strong></td>
                         <td>
-                            <a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-info">Detail</a>
+                            <a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-info">
+                                <i class="fas fa-eye me-1"></i> Detail
+                            </a>
                         </td>
                     </tr>
                 @empty

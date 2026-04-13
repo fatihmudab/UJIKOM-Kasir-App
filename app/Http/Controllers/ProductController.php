@@ -57,14 +57,13 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|integer|min:0',
-            'stock' => 'required|integer|min:0',
+            'stock' => 'nullable|integer|min:0',
             'image' => 'nullable|string',
         ]);
 
         $product->update([
             'name' => $request->name,
             'price' => $request->price,
-            'stock' => $request->stock,
             'image' => $request->image,
         ]);
 

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>🛒 Transaksi Baru</h4>
+                    <h4><i class="fas fa-shopping-cart me-2"></i>Transaksi Baru</h4>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -26,7 +26,9 @@
                         <input type="number" id="quantity" class="form-control" min="1" value="1">
                     </div>
 
-                    <button onclick="addToCart()" class="btn btn-primary">➕ Tambah ke Keranjang</button>
+                    <button onclick="addToCart()" class="btn btn-primary">
+                        <i class="fas fa-plus me-1"></i> Tambah ke Keranjang
+                    </button>
 
                     <hr>
 
@@ -55,7 +57,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h4>👤 Info Pelanggan</h4>
+                    <h4><i class="fas fa-user me-2"></i>Info Pelanggan</h4>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -90,7 +92,7 @@
                                 <p class="mb-1"><strong>Nama:</strong> <span id="memberName"></span></p>
                                 <p class="mb-1"><strong>No. HP:</strong> <span id="memberPhone"></span></p>
                                 <p class="mb-1"><strong>Poin:</strong> <span id="memberPoints"></span></p>
-                                <p class="mb-0"><small class="text-success">✓ Member dipilih! Siap transaksi.</small></p>
+                                <p class="mb-0"><small class="text-success"><i class="fas fa-check-circle me-1"></i>Member dipilih! Siap transaksi.</small></p>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="usePoints" onchange="updateTotal()">
@@ -136,7 +138,9 @@
                         <h4>Rp <span id="changeAmount">0</span></h4>
                     </div>
 
-                    <button onclick="processTransaction()" class="btn btn-success w-100">✅ Proses Transaksi</button>
+                    <button onclick="processTransaction()" class="btn btn-success w-100">
+                        <i class="fas fa-check-circle me-1"></i> Proses Transaksi
+                    </button>
                 </div>
             </div>
         </div>
@@ -208,7 +212,7 @@ function updateCartUI() {
                 <td>Rp ${item.price.toLocaleString('id-ID')}</td>
                 <td>${item.quantity}</td>
                 <td>Rp ${subtotal.toLocaleString('id-ID')}</td>
-                <td><button onclick="removeFromCart(${index})" class="btn btn-sm btn-danger">✕</button></td>
+                <td><button onclick="removeFromCart(${index})" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button></td>
             </tr>
         `;
     });
